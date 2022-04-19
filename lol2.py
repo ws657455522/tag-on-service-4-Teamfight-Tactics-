@@ -9,7 +9,7 @@ scale = 1
 img = cv2.imread('./da.png')#要找的大图
 img = cv2.resize(img, (0, 0), fx=scale, fy=scale)
 
-template = cv2.imread('./xiao.png')#图中的小图
+template = cv2.imread('./350.png')#图中的小图
 template = cv2.resize(template, (0, 0), fx=scale, fy=scale)
 template_size= template.shape[:2]
 
@@ -30,3 +30,11 @@ def search_returnPoint(img,template,template_size):
         return None,None,None
     return img,point[0]+ template_size[1] /2,point[1]
 
+img,x_,y_ = search_returnPoint(img,template,template_size)
+if(img is None):
+    print("没找到图片")
+else:
+    print("找到图片 位置:"+str(x_)+" " +str(y_))
+    plt.figure()
+    plt.imshow(img, animated=True)
+    plt.show()
